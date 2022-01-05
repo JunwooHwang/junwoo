@@ -4,10 +4,12 @@ import org.jun.domain.SampleMemberDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+//@RequestMapping("sample")
 public class SampleController {
 	private static final Logger logger = LoggerFactory.getLogger(SampleController.class);
 	
@@ -22,7 +24,8 @@ public class SampleController {
 		logger.info("sample 실행됨."); // console 역할
 	}
 	
-	@RequestMapping(value = "sample/ex01", method = RequestMethod.GET)  // 웹브라우저를 분석해주는 역할
+	// @RequestMapping(value = "sample/ex01", method = RequestMethod.GET)  // 웹브라우저를 분석해주는 역할
+	@GetMapping("sample/ex01")
 	public void basic1() {
 		logger.info("sample 실행됨."); // console 역할
 	}
