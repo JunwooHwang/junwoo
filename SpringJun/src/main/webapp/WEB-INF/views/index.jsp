@@ -15,7 +15,7 @@
 		<div>pw:<input type="password" name="pw" value="1234"></div>
 		<div>name:<input type="text" name="name" value="정자바"></div>
 		<input type="submit" value="회원가입">
-		
 	</form>
+		${xxxx}
 </body>
 </html>

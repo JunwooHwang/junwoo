@@ -35,9 +35,9 @@ public class SampleController {
 	}
 	
 	@RequestMapping(value = "sample/index",method = RequestMethod.GET)
-	public void index(Model model) {
+	public String index(Model model) {
 		model.addAttribute("xxxx", "cccc");
-		
+		return "index";
 	}
 	
 	@RequestMapping(value = "sample/member",method = RequestMethod.GET)
@@ -53,13 +53,15 @@ public class SampleController {
 	}
 	
 	@RequestMapping(value = "sample/memberDTO",method = RequestMethod.POST)
-	public void memberdto(SampleMemberDTO smd,Model model) {
+	public String memberdto(SampleMemberDTO smd,Model model) {
 		System.out.println("id="+smd.getId());
 		System.out.println("pw="+smd.getPw());
 		System.out.println("name="+smd.getName());
 		model.addAttribute("id", smd.getId());
 		model.addAttribute("pw", smd.getPw());
 		model.addAttribute("name", smd.getName());
+		//return "sample/memberDTO";
+		return "redirect:/";
 	}
 	
 	// 리턴이 없으면 주소(value)가 jsp의 이름이 됨
