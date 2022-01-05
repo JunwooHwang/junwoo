@@ -27,7 +27,9 @@ public class HomeController {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		// System.out.println("Welcome home! The client locale is {}." + locale);
 		
-		Date date = new Date();
+		Date date = new Date(); // 현재날짜와 시간
+		
+		// 날짜 형식을 정해주는 DateFormat클래스
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		
 		String formattedDate = dateFormat.format(date);

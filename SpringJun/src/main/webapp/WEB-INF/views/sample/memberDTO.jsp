@@ -7,7 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-${xxxx}
-
+${id}
+${pw}
+${name}
 </body>
 </html>

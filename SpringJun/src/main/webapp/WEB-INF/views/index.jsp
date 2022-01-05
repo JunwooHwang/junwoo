@@ -9,8 +9,8 @@
 <%@ include file="header.jsp" %>
 	<h1>index</h1>
 	<div>index.jsp파일입니다</div>
-	<a href="/smaple/memberDTO?id=abcd&pw=1234&name=정자바">회원가입</a>
-	<form action="/smaple/memberDTO" method="get">
+	<a href="/sample/member?id=abcd&pw=1234&name=정자바">회원가입</a>
+	<form action="/sample/memberDTO" method="POST">
 		<div>id:<input type="text" name="id" value="abcd"></div>
 		<div>pw:<input type="password" name="pw" value="1234"></div>
 		<div>name:<input type="text" name="name" value="정자바"></div>

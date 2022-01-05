@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+sample.jsp실행
+${abcd}
 </body>
 </html>
