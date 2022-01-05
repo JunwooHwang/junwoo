@@ -16,11 +16,20 @@
 </head>
 <body>
 	<h1>게시판 글쓰기</h1>
-	<div class="form-group row">
-    	<div class="col-sm-6 mb-3 mb-sm-0">
-        	<input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="title">
-    	</div>
-    </div>
-	<div><textarea rows="10" cols="20" class="form-control form-control-user" id="exampleFirstName" placeholder="context"></textarea></div>
+	<form action="/board/write" method="post">
+		<div class="form-group row">
+	    	<div class="col-sm-12 mb-3 mb-sm-0">
+	        	<input type="text" name="title" class="form-control form-control-user" id="exampleFirstName" placeholder="title">
+	    	
+	    	</div>
+	    
+			<div class="col-sm-12 mb-3 mb-sm-0">
+				<textarea rows="10" name="content" cols="20" class="form-control form-control-user" id="exampleFirstName" placeholder="content"></textarea>
+			</div>
+			<div class="btn btn-primary btn-icon-split">>
+		        <input type="submit" value="글쓰기" class="btn btn-primary btn-icon-split">
+		    </div>
+	    </div>
+    </form>
 </body>
 </html>
