@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,31 +37,17 @@
 			        	<th rowspan="1" colspan="1">좋아요</th>
 		        	</tr>
 			    </tfoot>
-		   		<tbody>  
-			    	<tr class="odd">
-			            <td class="sorting_1">Airi Satou</td>
-			            <td>Accountant</td>
-			            <td>Tokyo</td>
-			            <td>2008/11/28</td>
-			            <td>33</td>
-			            <td>$162,700</td>
-			        </tr>
-			        <tr class="even">
-			            <td class="sorting_1">Angelica Ramos</td>
-			            <td>Chief Executive Officer (CEO)</td>
-			            <td>London</td>
-			            <td>2009/10/09</td>
-			            <td>47</td>
-			            <td>$1,200,000</td>
-			        </tr>
-			        <tr class="odd">
-			            <td class="sorting_1">Ashton Cox</td>
-			            <td>Junior Technical Author</td>
-			            <td>San Francisco</td>
-			            <td>2009/01/12</td>
-			            <td>66</td>
-			            <td>$86,000</td>
-			        </tr>
+		   		<tbody>
+		   			<c:forEach items="${list}" var="board">  
+				    	<tr class="odd">
+				            <td class="sorting_1">${board.bno}</td>
+				            <td><a href="/board/detail?bno=${board.bno}">${board.title}</a></td>
+				            <td>${board.writer}</td>
+				            <td>${board.regdate}</td>
+				            <td>${board.cnt}</td>
+				            <td>${board.good}</td>
+				        </tr>
+			        </c:forEach>
 				</tbody>
 			</table>
 		</div>
