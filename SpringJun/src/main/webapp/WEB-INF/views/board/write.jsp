@@ -11,12 +11,12 @@
       rel="stylesheet">
 <link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
 <link href="../resources/css/all.min.css" rel="stylesheet" type="text/css">
-<link rel="stylrsheet" type="text/css" href="../resources/css/write.css">
+<link href="../resources/css/write.css" rel="stylrsheet" type="text/css">
 <script type="text/javascript" src="../resources/js/write.js"></script>
 </head>
 <body>
 	<h1>게시판 글쓰기</h1>
-	<form action="/board/write" method="post">
+	<form action="write" method="post">
 		<div class="form-group row">
 	    	<div class="col-sm-12 mb-3 mb-sm-0">
 	        	<input type="text" name="title" class="form-control form-control-user" id="exampleFirstName" placeholder="title">
