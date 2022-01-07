@@ -20,6 +20,10 @@
 		<div class="col-sm-12 mb-3 mb-sm-0">
 			${detail.content}
 		</div>
+		<div class="col-sm-12 mb-3 mb-sm-0">
+			<a href="/board/modify?bno=${detail.bno}">수정</a>
+			<a href="/board/remove?bno=${detail.bno}">삭제</a>
+		</div>
 	</div>
 </body>
 </html>
