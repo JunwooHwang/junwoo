@@ -39,9 +39,9 @@
 			 	or writer like concat('%',#{keyword},'%')
 			</otherwise>
 		 </choose>
-		 <![CDATA[
+		   <![CDATA[
 			and rownum > (#{pageNum}-1)*#{amount} and rownum <= #{pageNum}*#{amount}
-		]]>
+			]]>
 		
 		
 	</select>
