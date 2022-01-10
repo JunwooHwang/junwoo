@@ -1,6 +1,7 @@
 package org.jun.controller;
 
 import org.jun.domain.BoardDTO;
+import org.jun.domain.Criteria;
 import org.jun.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,9 +32,9 @@ public class BoardController {
 	
 	// 게시판 목록 리스트
 	@GetMapping("list")
-	public String tables(Model model) {
-		System.out.println("tablelist" + service.list());
-		model.addAttribute("list", service.list());
+	public String tables(Criteria cri,Model model) {
+		System.out.println("tablelist" + service.list(cri));
+		model.addAttribute("list", service.list(cri));
 		return "board/table";
 	}
 	// 게시판 목록 리스트에서 제목을 클릭했을때...
