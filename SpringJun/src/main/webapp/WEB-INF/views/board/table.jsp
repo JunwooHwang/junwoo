@@ -11,6 +11,8 @@
       rel="stylesheet">
 <link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
 <link href="../resources/css/all.min.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../resources/js/list.js"></script>
 </head>
 <body>
 	<h1>게시판 목록 리스트</h1>
@@ -50,10 +52,11 @@
 			        </c:forEach>
 				</tbody>
 			</table>
-			<form action="" method="get">
+			<form id="actionForm" action="/board/list" method="get">
 				<div class="form-control bg-light border-0 small">
+					<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+					<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 			        <select name="search">
-			        	<option value="">--</option>
 			        	<option value="T">제목</option>
 			        	<option value="C">내용</option>
 			        	<option value="W">작성자</option>
@@ -63,13 +66,31 @@
 			        <input type="text" name="keyword">
 			        <input type="submit" value="검색">		        
 		        </div>
-		        <div>
-		        	<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-		        		<ul>
-		        			<li>${num}</li>
-		        		</ul>
-		        	</c:forEach>
-		        </div>
+		        
+		        <div id="dataTable_paginate" class="dataTables_paginate paging_simple_numbers">
+                	<ul class="pagination">
+                		<c:if test="${pageMaker.prev}">
+                		<!-- jsp문법 ja문법을 html처럼 사용 -->
+	               			<li class="paginate_button page-item previous" id="dataTable_previous">
+	                			<a href="${pageMaker.startPage-1}" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">이전</a>
+	                		</li>
+	                	</c:if>
+	                	
+                		<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+                   			<li class="paginate_button page-item">
+                   				<a href="${num}" class="page-link">${num}</a>
+                   			</li>
+                		</c:forEach>
+                		
+                		<c:if test="${pageMaker.next}">
+	                		<li class="paginate_button page-item next" id="dataTable_next">
+	                			<a href="${pageMaker.endPage+1}" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">다음</a>
+	                		</li>
+                		</c:if>
+                	</ul>
+          		</div>
+
+		        
 	        </form>
 		</div>
 	</div>

@@ -18,5 +18,7 @@ public interface BoardMapper {
 	public void modify(BoardDTO board);
 	// 게시판 글삭제와 관련이 되어 있는 DB작업에 대한 설계
 	public void remove(BoardDTO board);
+	// 게시판 페이징에 쓰일 전체건수
+	public int getTotalCount();
 	
 }

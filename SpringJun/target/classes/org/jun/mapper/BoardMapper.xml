@@ -66,4 +66,32 @@
 		delete from board
 		where bno=#{bno};
 	</delete>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from board
+		<choose>
+			<when test="search == null">
+				where 1=1
+			</when>
+			<when test="search == 'T'.toString()">
+				where title like concat('%',#{keyword},'%')
+			</when>
+			<when test="search == 'C'.toString()">
+			 	where content like concat('%',#{keyword},'%')
+			</when>
+			<when test="search == 'W'.toString()">
+			 	where writer like concat('%',#{keyword},'%')
+			</when>
+			<when test="search == 'TC'.toString()">
+			 	where title like concat('%',#{keyword},'%')
+			 	or content like concat('%',#{keyword},'%')
+			</when>
+			
+			<otherwise>
+			  	where title like concat('%',#{keyword},'%')
+			 	or content like concat('%',#{keyword},'%')
+			 	or writer like concat('%',#{keyword},'%')
+			</otherwise>
+		 </choose>
+	</select>
   </mapper>

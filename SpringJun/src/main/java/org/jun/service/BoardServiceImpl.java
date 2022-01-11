@@ -38,4 +38,8 @@ public class BoardServiceImpl implements BoardService {
 	public void remove(BoardDTO board) {
 		bmapper.remove(board);
 	}
+	// 게시판 페이징에 쓰일 데이터건수 구현
+	public int getTotalCount() {
+		return bmapper.getTotalCount();
+	}
 }
