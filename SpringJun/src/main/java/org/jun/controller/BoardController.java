@@ -36,7 +36,7 @@ public class BoardController {
 	public String tables(Criteria cri,Model model) {
 		System.out.println("tablelist" + service.list(cri));
 		model.addAttribute("list", service.list(cri));
-		model.addAttribute("pageMaker", new PageDTO(cri,service.getTotalCount()));
+		model.addAttribute("pageMaker", new PageDTO(cri,service.getTotalCount(cri)));
 		return "board/table";
 	}
 	// 게시판 목록 리스트에서 제목을 클릭했을때...

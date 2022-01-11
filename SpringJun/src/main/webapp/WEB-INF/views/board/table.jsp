@@ -54,8 +54,10 @@
 			</table>
 			<form id="actionForm" action="/board/list" method="get">
 				<div class="form-control bg-light border-0 small">
-					<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
-					<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+					<input type="text" name="pageNum" value="${pageMaker.cri.pageNum}">
+					<input type="text" name="amount" value="${pageMaker.cri.amount}">
+					<input type="text" name="" value="${pageMaker.cri.search}">
+					<input type="text" name="" value="${pageMaker.cri.keyword}">
 			        <select name="search">
 			        	<option value="T">제목</option>
 			        	<option value="C">내용</option>
