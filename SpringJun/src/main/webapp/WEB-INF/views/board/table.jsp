@@ -54,10 +54,8 @@
 			</table>
 			<form id="actionForm" action="/board/list" method="get">
 				<div class="form-control bg-light border-0 small">
-					<input type="text" name="pageNum" value="${pageMaker.cri.pageNum}">
-					<input type="text" name="amount" value="${pageMaker.cri.amount}">
-					<input type="text" name="" value="${pageMaker.cri.search}">
-					<input type="text" name="" value="${pageMaker.cri.keyword}">
+					<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+					<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 			        <select name="search">
 			        	<option value="T">제목</option>
 			        	<option value="C">내용</option>
@@ -65,8 +63,8 @@
 			        	<option value="TC">제목 + 내용</option>
 			        	<option value="TCW">제목 + 내용 + 작성자</option>
 			        </select>
-			        <input type="text" name="keyword">
-			        <input type="submit" value="검색">		        
+			        <input type="text" name="keyword" value="${pageMaker.cri.keyword}">
+			        <input class="AS" type="submit" value="검색">		        
 		        </div>
 		        
 		        <div id="dataTable_paginate" class="dataTables_paginate paging_simple_numbers">
