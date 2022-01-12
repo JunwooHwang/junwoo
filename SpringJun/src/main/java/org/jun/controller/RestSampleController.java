@@ -1,8 +1,12 @@
 package org.jun.controller;
 
 import org.jun.domain.RestSampleDTO;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +26,28 @@ public class RestSampleController {
 		return new RestSampleDTO(100,"정","자바");
 	}
 	
+	// ResponseEntity타입 반환
+	@GetMapping(value="check")
+	public ResponseEntity<RestSampleDTO> check(int mno,String firstName,String lastName){
+		// 사용자로부터 매니저번호(mno)를 받아서,
+		RestSampleDTO rsdto = new RestSampleDTO(mno,firstName,lastName);
+		ResponseEntity<RestSampleDTO> result=null;
+		// 매니저번호가 150 미만이면 비정상으로 처리 - status가 502 : BAD_GATEWAY
+		if(mno<150) {
+			result=ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(rsdto);
+		}// 그렇지 않으면 정상적으로 처리 - status가 200 : OK
+		else {
+			result=ResponseEntity.status(HttpStatus.OK).body(rsdto);
+		}
+		return result;
+	}
+	// 메소드의 매개변수
+	// 객체타입을 매개변수로 지정해야 되는 경우에는 @RequestBody를 사용해야 됨.
+	@PostMapping("mno")
+	public RestSampleDTO mno(@RequestBody RestSampleDTO rsdto) {
+		System.out.println("rsdto="+rsdto);
+		return rsdto;
+	}
 	
 	
 	
