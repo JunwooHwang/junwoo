@@ -15,10 +15,20 @@ $(document).ready(function(){
 		// 클릭했을때 가져와야하는 변수들이라서 클릭이벤트에 변수선언
 		var reply=$("input[name='reply']").val();
 		var replyer=$("input[name='replyer']").val();
-		//replyService함수 호출     ajax로 보내고자하는 json타입               , callback함수 호출
-		replyService.add({reply:reply,replyer:replyer,bno:bno},function(result){alert("insert 작업 : "+result)});
+		//replyService함수 호출     ajax로 보내고자하는 json타입               
+		replyService.add({reply:reply,replyer:replyer,bno:bno},
+				function(result){
+						alert("insert 작업 : "+result); // callback함수 호출
+						// 목록리스트를 처리
+						list();
+				}
+		);
+		
 	})
 	// detail.jsp가 실행되자마자 댓글목록리스트가 실행되어야 함.
+	function list(){
+		
+	}
 	replyService.getList({bno:bno},function(list){
 		console.log(list);
 		
