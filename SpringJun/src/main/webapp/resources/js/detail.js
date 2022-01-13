@@ -15,6 +15,14 @@ $(document).ready(function(){
 	$("#addReplyBtn").on("click",function(){
 		//모달창을 띄워라
 		//$(".modal").Modal("show");
+		$("input[name='replyer").val("");
+		$("input[name='reply").val("");
+		// 상세페이지가 실행되면 댓글 글쓰기 버튼 활성화
+		$("#modalRegisterBtn").show();
+		// 상세페이지가 실행되면 댓글 글수정 버튼 활성화
+		$("#modalModBtn").hide();
+		// 상세페이지가 실행되면 댓글 글삭제 버튼 활성화
+		$("#modalRemoveBtn").hide();
 	});
 	//console.log(replyService);
 	var bno=$("#bno").html();
