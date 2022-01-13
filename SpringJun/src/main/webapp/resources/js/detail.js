@@ -11,10 +11,6 @@ $(document).ready(function(){
 	
 	
 	
-	
-	
-	
-	
 	// 댓글쓰기 버튼을 클릭하면
 	$("#addReplyBtn").on("click",function(){
 		//모달창을 띄워라
@@ -44,6 +40,8 @@ $(document).ready(function(){
 	showList();
 	
 	
+	
+	
 	//모달창안에
 	//댓글쓰기 버튼을 클릭하면
 	$("#modalRegisterBtn").on("click",function(){
@@ -60,28 +58,30 @@ $(document).ready(function(){
 		);
 		//모달창 숨겨라
 		$(".modal").modal("hide");
-	})
-	
+	});
+
 	// 댓글내용을 클릭하면 (수정 및 삭제를 하기 위해서)
 	$("#replyList").on("click",function(){
 		
-		replyService.reDatail(7,function(){
+		replyService.reDetail(7,function(detail){
 			
-		})
+			$("input[name='replyer").val(detail.replyer)
+			$("input[name='reply").val(detail.reply)
+
+			
+			// 상세페이지가 실행되면 댓글 글쓰기 버튼 비활성화
+			$("#modalRegisterBtn").hide();
+			// 상세페이지가 실행되면 댓글 글수정 버튼 활성화
+			$("#modalModBtn").show();
+			// 상세페이지가 실행되면 댓글 글삭제 버튼 활성화
+			$("#modalRemoveBtn").show();
+			// 모달창을 띄워라
+			$(".modal").modal("show");
+			
+		});
+			
 		
-		
-		
-		
-		// 상세페이지가 실행되면 댓글 글쓰기 버튼 비활성화
-		$("#modalRegisterBtn").hide();
-		// 상세페이지가 실행되면 댓글 글수정 버튼 활성화
-		$("#modalModBtn").show();
-		// 상세페이지가 실행되면 댓글 글삭제 버튼 활성화
-		$("#modalRemoveBtn").show();
-		// 모달창을 띄워라
-		$(".modal").modal("show");
-		
-	})
+	});
 	
 	
 	
@@ -132,7 +132,7 @@ var replyService=(function(){
 	function reDetail(rno,callback){
 		var rno=rno
 		$.getJSON(
-				"/replies/"+rno+".json"
+				"/replies/"+rno+".json",
 				function(data){
 					if(callback){
 						callback(data);
@@ -147,7 +147,8 @@ var replyService=(function(){
 	
 	return{
 		add:add,
-		getList:getList
+		getList:getList,
+		reDetail:reDetail
 	};
 })()
 

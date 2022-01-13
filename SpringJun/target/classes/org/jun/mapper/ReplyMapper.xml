@@ -13,7 +13,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where bno=#{bno};
 	</select>
 	
-	
+	<select id="detail" resultType="org.jun.domain.ReplyDTO">
+		select * from reply
+		where rno=#{rno};
+	</select>
 	
 	
 	

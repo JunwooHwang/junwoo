@@ -40,9 +40,12 @@ public class ReplyControlloer {
 	@GetMapping(value="list/{bno}",produces = {MediaType.APPLICATION_JSON_UTF8_VALUE,MediaType.APPLICATION_XML_VALUE})
 	public ResponseEntity<ArrayList<ReplyDTO>> getList(@PathVariable int bno){ // @PathVariable : REST방식에서 주로 사용,URL경로의 일부를 파라미터로 사용하고자 할떄
 		System.out.println(bno);
-		rservice.list(bno);
 		return new ResponseEntity<>(rservice.list(bno),HttpStatus.OK);
 	}
-	
-	
+	// 댓글수정을 하기 위해 댓글내용 가져오기
+	@GetMapping(value="{rno}",produces = {MediaType.APPLICATION_JSON_UTF8_VALUE,MediaType.APPLICATION_XML_VALUE})
+	public ResponseEntity<ReplyDTO> reDatail(@PathVariable int rno){ // @PathVariable : REST방식에서 주로 사용,URL경로의 일부를 파라미터로 사용하고자 할떄
+		System.out.println(rno);
+		return new ResponseEntity<>(rservice.detail(rno),HttpStatus.OK);
+}
 }

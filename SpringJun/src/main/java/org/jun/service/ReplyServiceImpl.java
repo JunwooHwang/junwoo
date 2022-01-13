@@ -22,4 +22,8 @@ public class ReplyServiceImpl implements ReplyService {
 	public ArrayList<ReplyDTO> list(int bno) {
 		return rmapper.list(bno);
 	}
+	// 댓글수정을 하기 위해 댓글내용 가져오기 구현
+		public ReplyDTO detail(int rno) {
+			return rmapper.detail(rno);
+		}
 }
