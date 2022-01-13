@@ -2,15 +2,50 @@
  * 
  */
 $(document).ready(function(){
+	// 상세페이지가 실행되면 댓글 글쓰기 버튼 활성화
+	$("#modalRegisterBtn").show();
+	// 상세페이지가 실행되면 댓글 글수정 버튼 활성화
+	$("#modalModBtn").show();
+	// 상세페이지가 실행되면 댓글 글삭제 버튼 활성화
+	$("#modalRemoveBtn").show();
+	
+	
+	
+	
+	
+	
+	
 	// 댓글쓰기 버튼을 클릭하면
 	$("#addReplyBtn").on("click",function(){
 		//모달창을 띄워라
 		//$(".modal").Modal("show");
 	});
 	//console.log(replyService);
-	//댓글쓰기 버튼을 클릭하면
 	var bno=$("#bno").html();
 	
+	// 댓글목록리스트 함수 선언
+	function showList(){
+		replyService.getList({bno:bno},function(list){
+			console.log(list);
+			
+			var str="";
+				
+			for(var i=0; i<list.length; i++){
+				str+="<li><div><b>"+list[i].reply+"</b></div>"
+				str+="<div>"+list[i].replyer
+				str+="</div></li>"
+				//$("#replyList").html(list[i].reply);
+			}
+			$("#replyList").html(str);
+			
+		});
+	}
+	// detail.jsp가 실행되자마자 댓글목록리스트가 실행되어야 함.
+	showList();
+	
+	
+	//모달창안에
+	//댓글쓰기 버튼을 클릭하면
 	$("#modalRegisterBtn").on("click",function(){
 		// 클릭했을때 가져와야하는 변수들이라서 클릭이벤트에 변수선언
 		var reply=$("input[name='reply']").val();
@@ -20,41 +55,54 @@ $(document).ready(function(){
 				function(result){
 						alert("insert 작업 : "+result); // callback함수 호출
 						// 목록리스트를 처리
-						list();
+						showList();
 				}
 		);
+		//모달창 숨겨라
+		$(".modal").modal("hide");
+	})
+	
+	// 댓글내용을 클릭하면 (수정 및 삭제를 하기 위해서)
+	$("#replyList").on("click",function(){
+		
+		replyService.reDatail(7,function(){
+			
+		})
+		
+		
+		
+		
+		// 상세페이지가 실행되면 댓글 글쓰기 버튼 비활성화
+		$("#modalRegisterBtn").hide();
+		// 상세페이지가 실행되면 댓글 글수정 버튼 활성화
+		$("#modalModBtn").show();
+		// 상세페이지가 실행되면 댓글 글삭제 버튼 활성화
+		$("#modalRemoveBtn").show();
+		// 모달창을 띄워라
+		$(".modal").modal("show");
 		
 	})
-	// detail.jsp가 실행되자마자 댓글목록리스트가 실행되어야 함.
-	function list(){
-		
-	}
-	replyService.getList({bno:bno},function(list){
-		console.log(list);
-		
-		var str="";
-			
-		for(var i=0; i<list.length; i++){
-			str+=list[i].reply+"<br>"
-			//$("#replyList").html(list[i].reply);
-		}
-		$("#replyList").html(str);
-		
-	});
+	
+	
+	
+	
+	
+	
 })
-
-var replyService=(function(){ //replyService함수선언
+ //replyService함수선언
+var replyService=(function(){
 	// 댓글쓰기를 하기 위한 함수 선언
 	function add(reply,callback){
         console.log("reply");
         $.ajax({
            url:"/replies/new",
            type:"post",
-           data:JSON.stringify(reply), // JSON.stringfy : 자바스크립트의 값을 JASON 문자열로 변환
+           data:JSON.stringify(reply),
+           // JSON.stringfy : 자바스크립트의 값을 JASON 문자열로 변환
            contentType:"application/json; charset=utf-8",
            // callback 함수 선언
-           success:function(result){ // 통신이 정상적으로 성공했으면
-        	   
+           success:function(result){ 
+        	   // 통신이 정상적으로 성공했으면
         	   // 만약에 callback이 있으면
         	   if(callback){
         		// callback함수를 호출
@@ -80,8 +128,18 @@ var replyService=(function(){ //replyService함수선언
 					}
 				})
 	}
-	
-	// 댓글수정를 하기 위한 함수 선언
+	// 댓글수정을 위해 댓글내용 가져오기 함수 선언
+	function reDetail(rno,callback){
+		var rno=rno
+		$.getJSON(
+				"/replies/"+rno+".json"
+				function(data){
+					if(callback){
+						callback(data);
+					}
+				})
+	}
+	// 댓글수정을 하기 위한 함수 선언
 	
 	// 댓글삭제를 하기 위한 함수 선언
 	

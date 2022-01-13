@@ -48,8 +48,9 @@
 		<div class="panel-body">
 			<button id="addReplyBtn" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">댓글 쓰기</button>
 			
-			<div id="replyList">
-				1234
+			<div>
+				<ul id="replyList">
+				</ul>
 			</div>
 			
 			
@@ -71,8 +72,8 @@
 		                </div>
 		                <div class="modal-footer">
 		                    <button id="modalRegisterBtn" type="button" class="btn btn-primary">댓글 쓰기</button>
-		                    <button type="button" class="btn btn-primary">댓글 수정</button>
-		                    <button type="button" class="btn btn-primary">댓글 삭제</button>
+		                    <button id="modalModBtn" type="button" class="btn btn-primary">댓글 수정</button>
+		                    <button id="modalRemoveBtn" type="button" class="btn btn-primary">댓글 삭제</button>
 		                    <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 		                </div>
 		            </div>
