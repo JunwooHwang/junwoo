@@ -7,4 +7,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into reply(bno,reply,replyer)
 		values(#{bno},#{reply},#{replyer})
 	</insert>
+	
+	<select id="list" resultType="org.jun.domain.ReplyDTO">
+		select * from reply
+		where bno=#{bno};
+	</select>
+	
+	
+	
+	
+	
 </mapper>

@@ -33,9 +33,7 @@
 
 <body>
 	<div class="form-group row">
-		<div id="bno" class="col-sm-12 mb-3 mb-sm-0">
-			${detail.bno}
-		</div>
+		<div id="bno" class="col-sm-12 mb-3 mb-sm-0">${detail.bno}</div>
 		<div class="col-sm-12 mb-3 mb-sm-0">
 	    	${detail.title}
 		</div>
@@ -49,6 +47,12 @@
 		</div>
 		<div class="panel-body">
 			<button id="addReplyBtn" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">댓글 쓰기</button>
+			
+			<div id="replyList">
+				1234
+			</div>
+			
+			
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
 		        <div class="modal-dialog">
 		            <div class="modal-content">
