@@ -62,11 +62,14 @@
 		                </div>
 		                <div class="modal-body">
 		                    <div>
-		                    	<label>Replyer</label>
+		                    	<input type="text" name="rno">
+		                    </div>
+		                    <div>
+		                    	<label>작성자</label>
 		                    	<input type="text" name="replyer">
 		                    </div>
 		                    <div>
-		                    	<label>Reply</label>
+		                    	<label>내용</label>
 		                    	<input type="text" name="reply">
 		                    </div>
 		                </div>

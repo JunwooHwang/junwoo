@@ -35,7 +35,7 @@ $(document).ready(function(){
 			var str="";
 				
 			for(var i=0; i<list.length; i++){
-				str+="<li><div><b>"+list[i].reply+"</b></div>"
+				str+="<li data-rno='"+list[i].rno+"'><div><b>"+list[i].reply+"</b></div>"
 				str+="<div>"+list[i].replyer
 				str+="</div></li>"
 				//$("#replyList").html(list[i].reply);
@@ -69,10 +69,14 @@ $(document).ready(function(){
 	});
 
 	// 댓글내용을 클릭하면 (수정 및 삭제를 하기 위해서)
-	$("#replyList").on("click",function(){
+	$("#replyList").on("click","li",function(){
 		
-		replyService.reDetail(7,function(detail){
+		// rno값을 가져오기
+		var rno= $(this).data("rno");
+		
+		replyService.reDetail(rno,function(detail){
 			
+			$("input[name='rno").val(detail.rno)
 			$("input[name='replyer").val(detail.replyer)
 			$("input[name='reply").val(detail.reply)
 
@@ -86,17 +90,60 @@ $(document).ready(function(){
 			// 모달창을 띄워라
 			$(".modal").modal("show");
 			
-		});
-			
+		})
+	})
+	
+	
+	// 댓글수정버튼을 클릭하면
+	$("#modalModBtn").on("click",function(){
+		//alert("aaaaaaa")
+		var reply = {rno:$("input[name='rno']").val(),reply:$("input[name='reply']").val()}
 		
-	});
+		// 댓글수정함수를  호출해서 처리
+		replyService.reUpdate(reply,function(update){
+			alert("update 작업 : "+update); // callback함수 호출
+			
+			// 목록리스트를 처리
+			showList();
+		})
+		//모달창 숨겨라
+		$(".modal").modal("hide");
+	
+	})
+	
+	
+	
+	
+	
+	// 댓글삭제버튼을 클릭하면
+	// 댓글삭제함수를 호출해서 처리
+	$("#modalRemoveBtn").on("click",function(){
+		
+		var reply = {rno:$("input[name='rno']").val()}
+		
+		replyService.remove(reply,function(remove){
+			
+			alert("remove 작업 : "+remove); // callback함수 호출
+			// 목록리스트를 처리
+			showList();
+			
+		})
+		//모달창 숨겨라
+		$(".modal").modal("hide");
+		
+	})
 	
 	
 	
 	
 	
 	
-})
+})//$(document).ready(function(){ 끝----------------------------------------------------------
+	
+	
+	
+	
+
  //replyService함수선언
 var replyService=(function(){
 	// 댓글쓰기를 하기 위한 함수 선언
@@ -148,15 +195,61 @@ var replyService=(function(){
 				})
 	}
 	// 댓글수정을 하기 위한 함수 선언
+	function reUpdate(reply,callback){
+		 $.ajax({
+			 url:"/replies/update",
+			 type:"put",
+			 data:JSON.stringify(reply),
+			 // JSON.stringfy : 자바스크립트의 값을 JASON 문자열로 변환
+			 contentType:"application/json; charset=utf-8",
+			 // callback 함수 선언
+			 success:function(result){ 
+	        	   // 통신이 정상적으로 성공했으면
+	        	   // 만약에 callback이 있으면
+	        	   if(callback){
+	        		// callback함수를 호출
+	        		   callback(result);
+	        	   }
+	        	   
+	           },   
+	           error:function(){ // 통신이 비정상적으로 처리가 되어 error가 있으면
+	              
+	           }      
+		 })
+	}
 	
 	// 댓글삭제를 하기 위한 함수 선언
+	function remove(reply,callback){
+		 $.ajax({
+			 url:"/replies/remove",
+			 type:"delete",
+			 data:JSON.stringify(reply),
+			 // JSON.stringfy : 자바스크립트의 값을 JASON 문자열로 변환
+			 contentType:"application/json; charset=utf-8",
+			 // callback 함수 선언
+			 success:function(result){ 
+	        	   // 통신이 정상적으로 성공했으면
+	        	   // 만약에 callback이 있으면
+	        	   if(callback){
+	        		// callback함수를 호출
+	        		   callback(result);
+	        	   }
+	        	   
+	           },   
+	           error:function(){ // 통신이 비정상적으로 처리가 되어 error가 있으면
+	              
+	           }      
+		 })
+	}
 	
 	
 	
 	return{
 		add:add,
 		getList:getList,
-		reDetail:reDetail
+		reDetail:reDetail,
+		reUpdate:reUpdate,
+		remove:remove
 	};
 })()
 
