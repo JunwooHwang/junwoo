@@ -54,7 +54,7 @@ $(document).ready(function(){
 			processData:false, 
 			contentType:false,
 			success:function(result){
-				alert("upload성공 : "+result)
+				alert("upload성공 : ")
 			}
 		})
 	})

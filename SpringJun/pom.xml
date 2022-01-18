@@ -14,6 +14,17 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
+		<!-- 
+			https://mvnrepository.com/artifact/net.coobird/thumbnailator 
+			썸네일
+		-->
+		<dependency>
+		    <groupId>net.coobird</groupId>
+		    <artifactId>thumbnailator</artifactId>
+		    <version>0.4.8</version>
+		</dependency>
+				
+	
 		<!-- Spring -->
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
 		<dependency>
