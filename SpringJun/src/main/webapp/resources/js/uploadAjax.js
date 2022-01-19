@@ -53,9 +53,33 @@ $(document).ready(function(){
 			data:formData,
 			processData:false, 
 			contentType:false,
-			success:function(result){
-				console.log(result);
+			success:function(result){ //사용자가 선택한 파일을 원하는 경로에 성공적으로 업로드 한 후
+				// showUploadedFile함수 호출
+				showUploadedFile(result);
 			}
-		})
+		})//$.ajax 끝
 	})
-})
+})// $(document).ready 끝
+//사용자가 선택한 파일을 원하는 경로에 성공적으로 업로드 한 후 웹브라우저에 파일을 띄워라에 대한 함수 선언(showUploadedFile)
+function showUploadedFile(uploadResultArr){
+	var str="";                    //번째,값
+	$(uploadResultArr).each(function(i,obj){ //each jquery의 반복문
+		console.log(obj);
+		if(!obj.image){
+			//사용자가 업로드 한 파일의 타입이 이미지가 아니면(excel문서파일,ppt파일),
+			console.log("이미지 파일 아님");
+			str+="<li>" + "이미지 파일 아님" + "</li>"
+		}else{
+			var fileCallPath = encodeURIComponent(obj.uploadPath + "/" + obj.uuid + "_" + obj.fileName)
+			// 사용자가 업로드 한 파일의 타입이 이미지이면 (.jpg,.png,.gif)
+			// img태그를 사용해서 웹브라우저 이미지 출력
+			console.log(fileCallPath);
+			str+="<li><img src='/display?fileName=" + fileCallPath + "'></li>"
+		}
+ 	})
+	$("#uploadResult ul").html(str);
+}
+
+
+
+
