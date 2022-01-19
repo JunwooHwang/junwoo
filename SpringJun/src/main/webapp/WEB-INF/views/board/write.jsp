@@ -12,11 +12,12 @@
 <link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
 <link href="../resources/css/all.min.css" rel="stylesheet" type="text/css">
 <link href="../resources/css/write.css" rel="stylrsheet" type="text/css">
-<script type="text/javascript" src="../resources/js/write.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../resources/js/uploadAjax.js"></script>
 </head>
 <body>
 	<h1>게시판 글쓰기</h1>
-	<form action="write" method="post">
+	<form role="form" action="write" method="post">
 		<div class="form-group row">
 	    	<div class="col-sm-12 mb-3 mb-sm-0">
 	        	<input type="text" name="title" class="form-control form-control-user" id="exampleFirstName" placeholder="title">
@@ -26,10 +27,17 @@
 			<div class="col-sm-12 mb-3 mb-sm-0">
 				<textarea rows="10" name="content" cols="20" class="form-control form-control-user" id="exampleFirstName" placeholder="content"></textarea>
 			</div>
+			<div>
+				<input type="file" name="uploadFile" multiple>
+			</div>
 			<div class="col-sm-12 mb-3 mb-sm-0">
 		        <input type="submit" value="글쓰기" class="btn btn-primary btn-icon-split">
 		    </div>
 	    </div>
     </form>
+   
+	<div id="uploadResult">
+		<ul></ul>
+	</div>
 </body>
 </html>

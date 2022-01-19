@@ -10,6 +10,8 @@ import java.util.Date;
 import java.util.UUID;
 
 import org.jun.domain.AttachFileDTO;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -191,6 +193,7 @@ public class UploadController {
 		return new ResponseEntity<>(list,HttpStatus.OK);
 	}
 	
+	// 파일업로드한 파일타입이 이미지 일 때 웹브라우저에 이미지를 띄우기 위해서
 	@GetMapping("display")
 	public ResponseEntity<byte[]> getFile(String fileName) { // getFile()은 문자열로 파일의 경로가 포함된 fileName을 매개변수 받고 byte[](이진수)로 전송.
 		System.out.println("url주소를 통한 fileName = " + fileName);
@@ -210,6 +213,34 @@ public class UploadController {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	// 파일업로드한 파일타입이 이미지가 아닐때 웹브라우저를 통해서 download할 수 있도록
+	// 댓글쓰기를 하기위한 RequestMapping
+	// Mapping을 할때 우리가 원하는 데이터 타입을 강제함으로써 오류상황을 줄일 수 있다.
+	// consumes : 들어오는 데이터 타입 정의 (생략가능)
+	// produces : 반환하는 데이터 타입 정의 (생략가능)
+	// 생략을 하게 되면 웹브라우저가 알아서 타입을 판단
+	// 웹브라우저가 이 파일은 download해야 하는 파일입니다. 라는 것을 인지할 수 있도록 반환이 되어야 합니다.
+	// 그러기 위해서는 APPLICATION_OCTET_STREAM_VALUE타입으로 반환데이터 타입을 선언합니다.
+	@GetMapping(value="download",produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+	public ResponseEntity<Resource> downloadFile(String fileName) {
+		System.out.println("download fileName = " + fileName);
+		
+		Resource resource = new FileSystemResource("D:\\upload\\" + fileName);
+		
+		System.out.println("download resource = " + resource);
+		
+		String resourceName = resource.getFilename();
+		
+		HttpHeaders header = new HttpHeaders();
+		
+		try {
+			header.add("Content-Disposition", "attachment; fileName = " + new String(resourceName.getBytes("UTF-8"),"ISO-8859-1"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new ResponseEntity<Resource>(resource,header,HttpStatus.OK);
 	}
 	
 	
