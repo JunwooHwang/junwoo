@@ -30,26 +30,7 @@ $(document).ready(function(){
 		$("#uploadResult ul").html(str)
 	})
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	// 상세페이지가 실행되면 댓글 글쓰기 버튼 활성화
 	$("#modalRegisterBtn").show();
 	// 상세페이지가 실행되면 댓글 글수정 버튼 활성화
