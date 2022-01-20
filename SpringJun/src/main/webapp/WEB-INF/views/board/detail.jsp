@@ -42,6 +42,11 @@
 		<div class="col-sm-12 mb-3 mb-sm-0">
 			${detail.content}
 		</div>
+		
+		<div id="uploadResult" class="col-sm-12 mb-3 mb-sm-0">
+			<ul></ul>
+		</div>
+		
 		<div class="col-sm-12 mb-3 mb-sm-0">
 			<a href="/board/modify?bno=${detail.bno}">수정</a>
 			<a href="/board/remove?bno=${detail.bno}">삭제</a>
@@ -86,7 +91,6 @@
 		        <!-- /.modal-dialog -->
 		    </div>
 		</div>
-		
 	</div>
 </body>
 </html>

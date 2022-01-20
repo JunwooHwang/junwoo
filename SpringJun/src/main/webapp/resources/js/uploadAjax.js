@@ -42,12 +42,12 @@ $(document).ready(function(){
 			 * <span data-age="13">
 			 * $("span).data("age") => 13 data함수 괄호안에 매개변수가 하나면 getter
 			 * */
-			str+="<input type='text' name='attachList["+i+"].fileName' value='"+$(obj).data("filename")+"'>"
-			str+="<input type='text' name='attachList["+i+"].uuid' value='"+$(obj).data("uuid")+"'>"
-			str+="<input type='text' name='attachList["+i+"].uploadPath' value='"+$(obj).data("path")+"'>"
-			str+="<input type='text' name='attachList["+i+"].image' value='"+$(obj).data("type")+"'>"
+			str+="<input type='hidden' name='attachList["+i+"].fileName' value='"+$(obj).data("filename")+"'>"
+			str+="<input type='hidden' name='attachList["+i+"].uuid' value='"+$(obj).data("uuid")+"'>"
+			str+="<input type='hidden' name='attachList["+i+"].uploadPath' value='"+$(obj).data("path")+"'>"
+			str+="<input type='hidden' name='attachList["+i+"].image' value='"+$(obj).data("type")+"'>"
 		})
-		formObj.append(str);
+		formObj.append(str).submit();
 		
 	})
 	
