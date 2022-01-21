@@ -18,6 +18,9 @@
 	<h1>게시판 목록 리스트</h1>
 	<div class="card-body">
    		<div class="table-responsive">
+   			<c:if test="${login!=null}">
+		    	<div class="form-control bg-light border-0 small"><a href="/board/write">글쓰기</a></div>	 
+			</c:if>
 			<table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
 			    <thead>
 			        <tr role="row">
@@ -64,7 +67,9 @@
 			        	<option value="TCW">제목 + 내용 + 작성자</option>
 			        </select>
 			        <input type="text" name="keyword" value="${pageMaker.cri.keyword}">
-			        <input class="AS" type="submit" value="검색">		        
+			        <input class="AS" type="submit" value="검색">	
+			        
+			           
 		        </div>
 		        
 		        <div id="dataTable_paginate" class="dataTables_paginate paging_simple_numbers">

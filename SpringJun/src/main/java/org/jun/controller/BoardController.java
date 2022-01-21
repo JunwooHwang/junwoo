@@ -72,7 +72,7 @@ public class BoardController {
 		System.out.println("modify");
 	}
 
-	// 글수정 버튼을 크릭하면.........
+	// 글수정 버튼을 클릭하면.........
 	@PostMapping("modify")
 	public String modifyPost(BoardDTO board, RedirectAttributes rttr) {
 		System.out.println(board);
